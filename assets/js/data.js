@@ -5,16 +5,16 @@ const wordData = {
     "gelar": ["Adik", "Bapak", "Dokter", "Gubernur", "Haji", "Ibu", "Jenderal", "Kakak", "Kiai", "Presiden", "Profesor", "Raden", "Saudara", "Sultan"],
     "hari": ["Jumat", "Kamis", "Minggu", "Rabu", "Sabtu", "Selasa", "Senin"],
     "institusi": ["Dewan Perwakilan Rakyat", "Kementerian Pendidikan dan Kebudayaan", "Perserikatan Bangsa-Bangsa", "Republik Indonesia"],
+    "ketuhanan": ["Allah", "Kristus", "Tuhan", "Yang Kuasa", "Yang Maha Esa", "Yang Maha Pengasih", "Yang Maha Penyayang", "Yesus"],
     "kitab": ["Alkitab", "Alquran", "Injil", "Tripitaka", "Weda"],
-    "kota": ["Banda Aceh", "Bandung", "Banjarmasin", "Bekasi", "Bogor", "Denpasar", "Depok", "Jakarta", "Jayapura", "Kupang", "Makassar", "Malang", "Manado", "Medan", "Palembang", "Pekanbaru", "Semarang", "Surabaya", "Surakarta", "Tangerang", "Yogyakarta"],
+    "kota": ["Ambon", "Asahan", "Balige", "Banda Aceh", "Bandar Lampung", "Bandung", "Banjarbaru", "Banjarmasin", "Batu Bara", "Bekasi", "Bengkulu", "Binjai", "Bogor", "Dairi", "Deli Serdang", "Denpasar", "Depok", "Gorontalo", "Gunung Sitoli", "Gunung Tua", "Humbang Hasundutan", "Jakarta", "Jambi", "Jayapura", "Jayawijaya", "Karo", "Kendari", "Kisaran", "Kupang", "Langkat", "Lubuk Pakam", "Makassar", "Malang", "Mamuju", "Manado", "Mandailing Natal", "Manokwari", "Mataram", "Medan", "Nias", "Nias Barat", "Nias Utara", "Padang", "Padang Lawas", "Padang Lawas Utara", "Padang Sidempuan", "Palangka Raya", "Palembang", "Palu", "Pangkalpinang", "Parapat", "Pekanbaru", "Pematangsiantar", "Perbaungan", "Pontianak", "Rantau Prapat", "Salor", "Samarinda", "Samosir", "Semarang", "Serang", "Serdang Bedagai", "Sibolga", "Simalungun", "Sofifi", "Sorong", "Stabat", "Surabaya", "Surakarta", "Tangerang", "Tanjung Balai", "Tanjung Selor", "Tapanuli Selatan", "Tapanuli Tengah", "Tapanuli Utara", "Tarutung", "Tebing Tinggi", "Toba Samosir", "Wanggar", "Yogyakarta"],
     "marga": ["Gea", "Ginting", "Hutabarat", "Hutasoit", "Manalu", "Manurung", "Nababan", "Panggabean", "Panjaitan", "Purba", "Rambe", "Sibarani", "Simamora", "Simanjuntak", "Simarmata", "Sitinjak", "Sitorus", "Waruwu"],
-    "nama": ["Evelyn", "Fandi", "Jokowi", "Prabowo"],
+    "nama": ["Aulia", "Damayanti", "Evelyn", "Fandi", "Jokowi", "Juliana", "Prabowo", "Presly"],
     "negara": ["Amerika", "Amerika Serikat", "Australia", "Belanda", "Indonesia", "Jepang", "Jerman", "Korea", "Malaysia", "Rusia", "Vietnam"],
     "peristiwaSejarah": ["Konferensi Meja Bundar", "Perang Diponegoro", "Proklamasi Kemerdekaan Indonesia", "Sumpah Pemuda"],
-    "provinsi": ["Aceh", "DKI Jakarta", "Sumatera Barat", "Sumatera Selatan", "Sumatera Utara"],
+    "provinsi": ["Aceh", "Bali", "Banten", "Bengkulu", "Daerah Istimewa Yogyakarta", "Daerah Khusus Ibukota Jakarta", "DKI Jakarta", "Gorontalo", "Jambi", "Jawa Barat", "Jawa Tengah", "Jawa Timur", "Kalimantan Barat", "Kalimantan Selatan", "Kalimantan Tengah", "Kalimantan Timur", "Kalimantan Utara", "Kepulauan Bangka Belitung", "Kepulauan Riau", "Lampung", "Maluku", "Maluku Utara", "Nusa Tenggara Barat", "Nusa Tenggara Timur", "Papua", "Papua Barat", "Papua Barat Daya", "Papua Pegunungan", "Papua Selatan", "Papua Tengah", "Riau", "Sulawesi Barat", "Sulawesi Selatan", "Sulawesi Tengah", "Sulawesi Tenggara", "Sulawesi Utara", "Sumatera Barat", "Sumatera Selatan", "Sumatera Utara", "Sulawesi Barat"],
     "singkatanGelar": ["Dr.", "Drs.", "M.Hum.", "M.Kom.", "S.Kom.", "S.Pd.", "SH", "Sp.A"],
     "suku": ["Arab", "Batak", "Belanda", "Inggris", "Jawa", "Karo", "Melayu", "Nias", "Papua", "Sunda"],
-    "tuhan": ["Allah", "Kristus", "Tuhan", "Yang Kuasa", "Yang Maha Esa", "Yang Maha Pengasih", "Yang Maha Penyayang", "Yesus"],
 };
 
 const ruleOptions = [
