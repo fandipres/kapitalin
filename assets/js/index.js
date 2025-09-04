@@ -16,17 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const overlay = document.getElementById('overlay');
-
-    const calculateTotalWords = () => {
-        return Object.values(wordData).reduce((total, category) => total + category.length, 0);
-    };
+    const dictionaryCountEl = document.getElementById('dictionary-count');
 
     const init = () => {
-        textarea.value = 'selamat datang di medan. teman saya, dr. budi, adalah orang suku jawa. dia berkata: "semoga tuhan yang maha esa memberkati kita semua." kita akan merayakan proklamasi kemerdekaan indonesia pada bulan agustus. salam untuk bapak presiden.';
+        textarea.value = '';
         yearEl.textContent = new Date().getFullYear();
         updateCounts();
         generateRules();
         addEventListeners();
+        // displayDictionaryCount();
     };
 
     const generateRules = () => {
@@ -53,14 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const toggleMenu = () => {
-        const isHidden = mobileMenu.classList.contains('-translate-x-full');
-        if (isHidden) {
-            mobileMenu.classList.remove('-translate-x-full');
-            overlay.classList.remove('hidden');
-        } else {
-            mobileMenu.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-        }
+        mobileMenu.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
     };
 
     const addEventListeners = () => {
@@ -70,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         processBtn.addEventListener('click', checkAndFixText);
         selectAllBtn.addEventListener('click', () => selectAllRules(true));
         deselectAllBtn.addEventListener('click', () => selectAllRules(false));
-
         hamburgerBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
 
@@ -114,6 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
         rulesContainer.querySelectorAll('input[type="checkbox"]:not(:disabled)').forEach(cb => cb.checked = select);
     };
 
+    // const displayDictionaryCount = () => {
+    //     const totalWords = Object.values(wordData).reduce((total, category) => total + category.length, 0);
+    //     dictionaryCountEl.textContent = totalWords.toLocaleString('id-ID');
+    // };
+
     const showModal = (content) => {
         document.getElementById('modal-title').textContent = content.label;
         document.getElementById('modal-description').textContent = content.description;
@@ -134,11 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const capitalizeFromList = (txt, list) => {
             if (!list || list.length === 0) return txt;
-            list.forEach(item => {
+            const sortedList = list.sort((a, b) => b.length - a.length);
+
+            sortedList.forEach(item => {
                 const escapedItem = item.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const itemRegex = escapedItem.replace(/ /g, '\\s+');
-                const regex = new RegExp(`\\b${itemRegex}\\b`, 'gi');
-                txt = txt.replace(regex, item);
+                const flexibleEscapedItem = escapedItem.endsWith('\\.')
+                    ? escapedItem.slice(0, -2) + '\\.?'
+                    : escapedItem;
+
+                const regex = new RegExp(`(^|\\s|,)(${flexibleEscapedItem})(?=[\\s.,!?]|$)`, 'gi');
+
+                txt = txt.replace(regex, (match, p1, p2) => {
+                    return p1 + item;
+                });
             });
             return txt;
         };
@@ -152,14 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (rules.awalKalimat) processedText = processedText.replace(/(^\s*\w|[\.\!\?]\s*\w)/gm, c => c.toUpperCase());
         if (rules.awalPetikan) processedText = processedText.replace(/(["“]\s*\w)/g, c => c.toUpperCase());
         if (rules.namaAgamaTuhan) {
-            processedText = capitalizeFromList(processedText, wordData.tuhan.concat(wordData.agama, wordData.kitab));
+            processedText = capitalizeFromList(processedText, wordData.ketuhanan.concat(wordData.agama, wordData.kitab));
             processedText = processedText.replace(/\b(hamba|ciptaan|umat|rahmat)-(mu|nya)\b/gi, (m, p1, p2) => `${p1.charAt(0).toUpperCase() + p1.slice(1)}-${p2.charAt(0).toUpperCase() + p2.slice(1)}`);
         }
         if (rules.namaOrang) processedText = capitalizeFromList(processedText, wordData.nama.concat(wordData.marga));
         if (rules.gelarKehormatanDiikutiNama || rules.gelarSapaan || rules.jabatanDiikutiNama || rules.sapaanKekerabatan) {
             processedText = capitalizeFromList(processedText, wordData.gelar);
         }
-        if (rules.singkatanGelar) processedText = capitalizeFromList(processedText, wordData.singkatanGelar);
+        if (rules.singkatanGelar) {
+            processedText = capitalizeFromList(processedText, wordData.singkatanGelar);
+        }
         if (rules.namaBangsa) processedText = capitalizeFromList(processedText, wordData.suku);
         if (rules.namaWaktu) processedText = capitalizeFromList(processedText, wordData.hari.concat(wordData.bulan));
         if (rules.namaPeristiwaSejarah) processedText = capitalizeFromList(processedText, wordData.peristiwaSejarah);
