@@ -13,10 +13,10 @@ A simple and free web-based tool designed to automatically check and correct cap
 
 ## 💻 Application Preview
 
-![Home Page]()
-*The main page of the application.*
-![Home Page]()
-*The main page of the application.*
+![Home Page](./previews/home-page.png)
+*Home page.*
+![Dictionary Page](./previews/dictionary-page.png)
+*Dictionary page.*
 
 ## 🛠️ Tech Stack
 
