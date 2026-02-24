@@ -54,8 +54,8 @@ Follow these steps to get the project running on your local machine:
 
 ## 🔗 Links
 
--   **Live Demo:** [fandipres.github.io/kapitalin](https://fandipres.github.io/kapitalin)
--   **Repository:** [github.com/fandipres/kapitalin](https://github.com/fandipres/kapitalin)
+* **Live Demo:** [fandipres.github.io/kapitalin](https://fandipres.github.io/kapitalin)
+* **Repository:** [github.com/fandipres/kapitalin](https://github.com/fandipres/kapitalin)
 
 ## 📄 License
 
