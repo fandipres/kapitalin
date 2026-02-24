@@ -10,26 +10,56 @@ document.addEventListener('DOMContentLoaded', () => {
         return Object.values(wordData).reduce((total, category) => total + category.length, 0);
     };
 
+    const formatTitle = (key) => {
+        const withSpaces = key.replace(/([A-Z])/g, ' $1');
+        return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1);
+    };
+
     const renderKamus = () => {
         kamusContainer.innerHTML = '';
         const sortedCategoryKeys = Object.keys(wordData).sort((a, b) => a.localeCompare(b));
 
         sortedCategoryKeys.forEach(key => {
-            if (wordData[key]) {
+            if (wordData[key] && wordData[key].length > 0) {
                 const words = [...wordData[key]].sort((a, b) => a.localeCompare(b));
-                const title = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                const title = formatTitle(key);
+
                 const row = document.createElement('div');
-                row.className = 'bg-white p-6 rounded-lg shadow-md w-full';
+                row.className = 'bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden w-full transition-all duration-200';
 
                 row.innerHTML = `
-                    <div class="border-b pb-3 mb-4">
-                        <h3 class="text-xl font-bold text-indigo-700">${title}</h3>
-                        <p class="text-sm text-gray-500 mt-1">${words.length.toLocaleString('id-ID')} kata</p>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        ${words.map(word => `<span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-1 rounded-full">${word}</span>`).join('')}
+                    <button class="w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors duration-200 category-toggle">
+                        <div class="flex flex-col items-start text-left">
+                            <h3 class="text-lg font-bold text-gray-800">${title}</h3>
+                            <p class="text-sm text-gray-500 mt-1">${words.length.toLocaleString('id-ID')} entri kata</p>
+                        </div>
+                        <div class="flex-shrink-0 ml-4 bg-indigo-50 text-indigo-500 p-2 rounded-full">
+                            <i class="fas fa-chevron-down transition-transform duration-300 transform chevron-icon"></i>
+                        </div>
+                    </button>
+                    <div class="category-content hidden border-t border-gray-100 p-5 bg-gray-50">
+                        <div class="flex flex-wrap gap-2">
+                            ${words.map(word => `<span class="bg-white border border-gray-200 text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm select-all">${word}</span>`).join('')}
+                        </div>
                     </div>
                 `;
+
+                const toggleBtn = row.querySelector('.category-toggle');
+                const contentDiv = row.querySelector('.category-content');
+                const chevronIcon = row.querySelector('.chevron-icon');
+
+                toggleBtn.addEventListener('click', () => {
+                    const isHidden = contentDiv.classList.contains('hidden');
+
+                    document.querySelectorAll('.category-content').forEach(el => el.classList.add('hidden'));
+                    document.querySelectorAll('.chevron-icon').forEach(el => el.classList.remove('rotate-180'));
+
+                    if (isHidden) {
+                        contentDiv.classList.remove('hidden');
+                        chevronIcon.classList.add('rotate-180');
+                    }
+                });
+
                 kamusContainer.appendChild(row);
             }
         });
@@ -48,11 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const init = () => {
         yearEl.textContent = new Date().getFullYear();
-        dictionaryCountEl.textContent = calculateTotalWords().toLocaleString('id-ID');
+
+        if (dictionaryCountEl) {
+            dictionaryCountEl.textContent = calculateTotalWords().toLocaleString('id-ID');
+        }
+
         renderKamus();
 
-        hamburgerBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
+        if (overlay) overlay.addEventListener('click', toggleMenu);
     };
 
     init();
