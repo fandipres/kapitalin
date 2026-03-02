@@ -1,0 +1,21 @@
+{
+  "name": "Kapitalin - Alat Kapitalisasi EYD",
+  "short_name": "Kapitalin",
+  "description": "Alat otomatis perbaikan huruf kapital teks Bahasa Indonesia sesuai EYD V.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192/4f46e5/ffffff?text=K",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://placehold.co/512x512/4f46e5/ffffff?text=K",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
