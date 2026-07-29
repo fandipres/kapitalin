@@ -1,4 +1,4 @@
-# 🚀 Kapitalin: Automatic Capitalization (Web App)
+# 🚀 Kapitalin: Automatic Capitalization
 
 A simple and free web-based tool designed to automatically check and correct capitalization in Indonesian text according to the official grammar rules (EYD V).
 
