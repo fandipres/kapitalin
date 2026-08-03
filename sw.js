@@ -1,11 +1,19 @@
-const CACHE_NAME = 'kapitalin-cache-v1';
+const CACHE_NAME = 'kapitalin-cache-v2';
 const urlsToCache = [
     './',
     './index.html',
     './dictionary.html',
+    './about.html',
+    './manifest.json',
+    './assets/css/app.css',
     './assets/js/data.js',
+    './assets/js/capitalize.js',
     './assets/js/index.js',
-    './assets/js/kamus.js'
+    './assets/js/dictionary.js',
+    './assets/js/pwa.js',
+    './assets/icons/icon-192.png',
+    './assets/icons/icon-512.png',
+    './assets/icons/favicon-32.png'
 ];
 
 self.addEventListener('install', event => {
