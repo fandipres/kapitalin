@@ -34,6 +34,7 @@ body {
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 220px;
+    max-width: calc(100vw - 3rem);
     background-color: #334155;
     color: #fff;
     text-align: center;
@@ -42,8 +43,7 @@ body {
     position: absolute;
     z-index: 10;
     bottom: 125%;
-    left: 50%;
-    margin-left: -110px;
+    right: -8px;
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
     transform: translateY(5px);
@@ -55,8 +55,7 @@ body {
     content: "";
     position: absolute;
     top: 100%;
-    left: 50%;
-    margin-left: -5px;
+    right: 10px;
     border-width: 5px;
     border-style: solid;
     border-color: #334155 transparent transparent transparent;
