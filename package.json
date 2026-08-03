@@ -1,0 +1,26 @@
+{
+  "name": "kapitalin",
+  "version": "1.0.0",
+  "description": "A simple and free web-based tool designed to automatically check and correct capitalization in Indonesian text according to the official grammar rules (EYD V).",
+  "main": "sw.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/app.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/app.css --watch",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fandipres/kapitalin.git"
+  },
+  "keywords": [],
+  "author": "Fandi Presly Simamora",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fandipres/kapitalin/issues"
+  },
+  "homepage": "https://github.com/fandipres/kapitalin#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
