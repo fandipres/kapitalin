@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wordCountEl = document.getElementById('word-count');
     const clearBtn = document.getElementById('clear-btn');
     const copyBtn = document.getElementById('copy-btn');
+    const undoBtn = document.getElementById('undo-btn');
     const processBtn = document.getElementById('process-btn');
     const rulesContainer = document.getElementById('rules-container');
     const selectAllBtn = document.getElementById('select-all-btn');
@@ -27,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const customWordsModalClose = document.getElementById('custom-words-modal-close');
     const customWordsModalDone = document.getElementById('custom-words-modal-done');
 
+    let textBeforeProcess = null;
+
     const init = () => {
         if (textarea) textarea.value = '';
         if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -40,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rulesContainer.innerHTML = '';
         
         ruleOptions.forEach(rule => {
-            if (rule.id === 'namaOrang') return;
-
             const isChecked = rule.checked ? 'checked' : '';
             const isDisabled = rule.disabled ? 'disabled' : '';
             const opacityClass = rule.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
@@ -104,11 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const addEventListeners = () => {
-        if (textarea) textarea.addEventListener('input', updateCounts);
+        if (textarea) {
+            textarea.addEventListener('input', () => {
+                updateCounts();
+                disableUndo();
+            });
+        }
         if (clearBtn) clearBtn.addEventListener('click', clearText);
         if (copyBtn) copyBtn.addEventListener('click', copyToClipboard);
+        if (undoBtn) undoBtn.addEventListener('click', undoProcess);
         if (processBtn) processBtn.addEventListener('click', checkAndFixText);
-        
+
         if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
         if (overlay) overlay.addEventListener('click', toggleMenu);
 
@@ -146,6 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal) modal.addEventListener('click', hideModal);
         if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideModal);
         if (modalContent) modalContent.addEventListener('click', (e) => e.stopPropagation());
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            if (modal && modal.classList.contains('flex')) return hideModal();
+            if (rulesModal && rulesModal.classList.contains('flex')) return closeRulesModal();
+            if (customWordsModal && customWordsModal.classList.contains('flex')) return closeCustomWordsModal();
+        });
     };
 
     const updateCounts = () => {
@@ -158,6 +172,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearText = () => {
         if (textarea) textarea.value = '';
         updateCounts();
+        disableUndo();
+    };
+
+    const enableUndo = () => {
+        if (!undoBtn) return;
+        undoBtn.disabled = false;
+    };
+
+    const disableUndo = () => {
+        textBeforeProcess = null;
+        if (!undoBtn) return;
+        undoBtn.disabled = true;
+    };
+
+    const undoProcess = () => {
+        if (!textarea || textBeforeProcess === null) return;
+        textarea.value = textBeforeProcess;
+        updateCounts();
+        disableUndo();
     };
 
     const copyToClipboard = () => {
@@ -195,79 +228,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkAndFixText = () => {
         if (!textarea) return;
-        let processedText = textarea.value.toLowerCase();
+        textBeforeProcess = textarea.value;
         const rules = {};
-        
+
         if (rulesContainer) {
             rulesContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                 rules[cb.id] = cb.checked;
             });
         }
 
-        const capitalizeFromList = (txt, list) => {
-            if (!list || list.length === 0) return txt;
-            const sortedList = list.sort((a, b) => b.length - a.length);
-
-            sortedList.forEach(item => {
-                const escapedItem = item.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const flexibleEscapedItem = escapedItem.endsWith('\\.')
-                    ? escapedItem.slice(0, -2) + '\\.?'
-                    : escapedItem;
-
-                const regex = new RegExp(`(^|\\s|,)(${flexibleEscapedItem})(?=[\\s.,!?]|$)`, 'gi');
-
-                txt = txt.replace(regex, (match, p1, p2) => {
-                    return p1 + item;
-                });
-            });
-            return txt;
-        };
-
         let customWordsText = '';
         document.querySelectorAll('#customWords').forEach(input => {
             if (input.value.trim() !== '') customWordsText += input.value + '\n';
         });
-        
-        if (customWordsText.trim() !== '') {
-            const customWordList = customWordsText.split(/[,\n]/).map(w => w.trim()).filter(Boolean);
-            const capitalizedCustomList = customWordList.map(w => w.split(' ').map(p => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()).join(' '));
-            processedText = capitalizeFromList(processedText, capitalizedCustomList);
-        }
 
-        if (rules.awalKalimat) {
-            processedText = processedText.replace(/(^\s*\w|[\.\!\?]\s*\w)/gm, c => c.toUpperCase());
-        }
-        if (rules.awalPetikan) {
-            processedText = processedText.replace(/(["“]\s*\w)/g, c => c.toUpperCase());
-        }
-        if (rules.namaAgamaTuhan) {
-            processedText = capitalizeFromList(processedText, (wordData.ketuhanan || []).concat(wordData.agama || [], wordData.kitab || []));
-            processedText = processedText.replace(/\b(hamba|ciptaan|umat|rahmat)-(mu|nya)\b/gi, (m, p1, p2) => `${p1.charAt(0).toUpperCase() + p1.slice(1)}-${p2.charAt(0).toUpperCase() + p2.slice(1)}`);
-        }
-        if (rules.gelarKehormatanDiikutiNama || rules.gelarSapaan || rules.jabatanDiikutiNama || rules.sapaanKekerabatan) {
-            processedText = capitalizeFromList(processedText, wordData.gelar || []);
-        }
-        if (rules.singkatanGelar) {
-            processedText = capitalizeFromList(processedText, wordData.singkatanGelar || []);
-        }
-        if (rules.namaBangsa) {
-            processedText = capitalizeFromList(processedText, wordData.suku || []);
-        }
-        if (rules.namaWaktu) {
-            processedText = capitalizeFromList(processedText, (wordData.hari || []).concat(wordData.bulan || []));
-        }
-        if (rules.namaPeristiwaSejarah) {
-            processedText = capitalizeFromList(processedText, wordData.peristiwaSejarah || []);
-        }
-        if (rules.namaGeografi) {
-            processedText = capitalizeFromList(processedText, (wordData.kota || []).concat(wordData.provinsi || [], wordData.negara || []));
-        }
-        if (rules.namaLembagaDokumen) {
-            processedText = capitalizeFromList(processedText, (wordData.institusi || []).concat(wordData.dokumen || []));
-        }
-
-        textarea.value = processedText;
+        textarea.value = Capitalizer.applyCapitalizationRules(textarea.value, rules, wordData, customWordsText);
         updateCounts();
+        enableUndo();
     };
 
     init();

@@ -1,6 +1,6 @@
 const wordData = {
     "agama": [
-        "Ateis", "Baha'i", "Buddha", "Hindu", "Islam", "Jainisme", "Kalang", "Kapitayan",
+        "Baha'i", "Buddha", "Hindu", "Islam", "Jainisme", "Kalang", "Kapitayan",
         "Katolik", "Kejawen", "Khonghucu", "Kristen", "Marapu", "Parmalim", "Protestan",
         "Shinto", "Sikh", "Sunda Wiwitan", "Taoisme", "Tolotang", "Yahudi", "Zoroaster"
     ],
@@ -31,7 +31,7 @@ const wordData = {
     "gelar": [
         "Adipati", "Admiral", "Ajun Inspektur Polisi Dua", "Ajun Inspektur Polisi Satu",
         "Ajun Komisaris Besar Polisi", "Ajun Komisaris Polisi", "Andi",
-        "Bhayangkara Dua", "Bhayangkara Kepala", "Bhayangkara Satu", "Bintara",
+        "Bhayangkara Dua", "Bhayangkara Kepala", "Bhayangkara Satu", "Bintara", "Brigadir",
         "Bupati", "Camat", "Cut", "Daeng", "Datuk", "Dokter", "Doktor", "Duta Besar",
         "Eyang", "Gubernur", "Habib", "Hajah", "Haji", "Insinyur", "Inspektur Jenderal",
         "Inspektur Polisi Dua", "Inspektur Polisi Satu", "Jenderal", "Kaisar",
@@ -52,7 +52,7 @@ const wordData = {
         "Hari Sumpah Pemuda", "Iduladha", "Idulfitri", "Imlek", "Isra Mikraj", "Jumat",
         "Jumat Agung", "Kamis", "Kenaikan Isa Almasih", "Kuningan", "Lebaran",
         "Maulid Nabi", "Minggu", "Natal", "Nyepi", "Paskah", "Rabu", "Sabtu", "Selasa",
-        "Senin", "Tahun Baru Hijriah", "Tahun Baru Saka", "Tarwiyah", "Waisak"
+        "Senin", "Tahun Baru Hijriah", "Tahun Baru Masehi", "Tahun Baru Saka", "Tarwiyah", "Waisak"
     ],
     "institusi": [
         "APEC", "ASEAN", "Badan Intelijen Negara", "Badan Meteorologi, Klimatologi, dan Geofisika",
@@ -142,8 +142,8 @@ const wordData = {
         "Lampung Tengah", "Lampung Timur", "Lampung Utara", "Landak", "Langkat",
         "Lanny Jaya", "Lebak", "Lebong", "Lembata", "Lhokseumawe", "Lima Puluh Kota",
         "Lingga", "Lombok Barat", "Lombok Tengah", "Lombok Timur", "Lombok Utara",
-        "London", "Lumajang", "Luwu", "Madiun", "Magelang", "Magetan", "Mahakam Ulu",
-        "Majalengka", "Makassar", "Malang", "Malinau", "Maluku Barat Daya",
+        "London", "Lumajang", "Luwu", "Madinah", "Madiun", "Magelang", "Magetan", "Mahakam Ulu",
+        "Majalengka", "Makassar", "Makkah", "Malang", "Malinau", "Maluku Barat Daya",
         "Maluku Tengah", "Maluku Tenggara", "Mamasa", "Mamberamo Raya", "Mamberamo Tengah",
         "Mamuju", "Manado", "Mandailing Natal", "Manggarai", "Manila", "Manokwari",
         "Mappi", "Maros", "Mataram", "Maybrat", "Medan", "Mediterania", "Melawi", "Merangin",
@@ -177,7 +177,7 @@ const wordData = {
         "Sukamara", "Sukoharjo", "Sumba Barat", "Sumba Tengah", "Sumba Timur", "Sumbawa",
         "Sumedang", "Sumenep", "Sungai Bengawan Solo", "Sungai Kapuas", "Sungai Mahakam",
         "Sungai Musi", "Supiori", "Surabaya", "Surakarta", "Sydney", "Tabalong", "Tabanan",
-        "Takalar", "Tambrauw", "Tana Tidung", "Tana Toraja", "Tanah Bumbu", "Tanah Datar",
+        "Taiwan", "Takalar", "Tambrauw", "Tana Tidung", "Tana Toraja", "Tanah Bumbu", "Tanah Datar",
         "Tanah Laut", "Tangerang", "Tangerang Selatan", "Tanggamus", "Tanjung Balai",
         "Tanjung Jabung Barat", "Tanjung Jabung Timur", "Tanjungpinang",
         "Tapanuli Selatan", "Tapanuli Tengah", "Tapanuli Utara", "Tapin", "Tarakan",
@@ -208,7 +208,7 @@ const wordData = {
         "Maroko", "Marshall", "Mauritania", "Mauritius", "Meksiko", "Mesir", "Mikronesia",
         "Moldova", "Monako", "Mongolia", "Montenegro", "Mozambik", "Myanmar", "Namibia",
         "Nauru", "Nepal", "Niger", "Nigeria", "Nikaragua", "Norwegia", "Oman", "Pakistan",
-        "Palau", "Panama", "Pantai Gading", "Papua Nugini", "Paraguay", "Prancis", "Peru",
+        "Palau", "Palestina", "Panama", "Pantai Gading", "Papua Nugini", "Paraguay", "Prancis", "Peru",
         "Polandia", "Portugal", "Qatar", "Republik Dominika", "Rumania", "Rusia", "Rwanda",
         "Saint Kitts dan Nevis", "Saint Lucia", "Saint Vincent dan Grenadine", "Samoa",
         "San Marino", "Sao Tome dan Principe", "Selandia Baru", "Senegal", "Serbia",
@@ -249,7 +249,7 @@ const wordData = {
         "Sumatera Utara"
     ],
     "singkatanGelar": [
-        "A.M.", "A.Ma.", "A.Md.", "A.P.", "B.A.", "B.Eng.", "B.Sc.", "D.Min.", "D.Th.",
+        "A.M.", "A.Ma.", "A.Md.", "A.P.", "Apt.", "B.A.", "B.Eng.", "B.Sc.", "D.Min.", "D.Th.",
         "Dipl.", "Dr.", "Dra.", "Drs.", "Ed.D.", "H.", "Hj.", "Ir.", "K.H.", "L.L.B.", "L.L.M.",
         "M.A.", "M.Ag.", "M.Ars.", "M.B.A.", "M.Biomed.", "M.E.", "M.E.I.", "M.Eng.",
         "M.Farm.", "M.H.", "M.Hum.", "M.K.M.", "M.Kn.", "M.Kom.", "M.M.", "M.P.", "M.Pd.",
@@ -308,7 +308,6 @@ if (wordData.institusi && wordData.institusi.length > 0) {
 
 const ruleOptions = [
     { id: 'awalKalimat', label: 'Awal kalimat', description: 'Huruf pertama pada awal sebuah kalimat harus menggunakan huruf kapital.', example: 'selamat pagi. -> Selamat pagi.', checked: true },
-    { id: 'namaOrang', label: 'Unsur nama orang dan julukan', description: 'Huruf pertama setiap unsur nama orang, termasuk julukan, ditulis dengan huruf kapital.', example: 'joko widodo -> Joko Widodo', checked: true },
     { id: 'pengecualianNamaJenis', label: 'Pengecualian nama jenis atau satuan', disabled: true, tooltip: "Aturan ini memerlukan pemahaman konteks yang kompleks dan sedang dalam pengembangan.", description: 'Aturan ini mengecualikan nama orang yang telah menjadi nama jenis atau satuan ukuran.', example: 'mesin diesel -> mesin diesel\n10 ampere -> 10 ampere', checked: false },
     { id: 'namaTeoriHukum', label: 'Nama orang pada teori dan hukum', disabled: true, tooltip: "Aturan ini memerlukan pemahaman konteks yang kompleks dan sedang dalam pengembangan.", description: 'Huruf kapital digunakan pada nama orang yang terdapat dalam nama teori, hukum, atau rumus.', example: 'teori darwin -> Teori Darwin', checked: false },
     { id: 'pengecualianAnakDari', label: 'Pengecualian \'anak dari\'', disabled: true, tooltip: "Aturan ini memerlukan pemahaman konteks yang kompleks dan sedang dalam pengembangan.", description: "Kata yang bermakna 'anak dari' seperti bin, binti, dan van tidak dikapitalkan kecuali di awal nama.", example: 'abdul rahman bin zaid -> Abdul Rahman bin Zaid', checked: false },
@@ -327,7 +326,11 @@ const ruleOptions = [
     { id: 'pengecualianGeografiJenis', label: 'Geografi sebagai nama jenis', disabled: true, tooltip: "Aturan ini memerlukan pemahaman konteks yang kompleks dan sedang dalam pengembangan.", description: 'Huruf pertama nama diri geografi yang dipakai sebagai nama jenis tidak dikapitalkan.', example: 'kunci inggris, gula jawa -> kunci inggris, gula jawa', checked: false },
     { id: 'geografiAsalDaerah', label: 'Geografi penunjuk asal daerah', disabled: true, tooltip: "Aturan ini memerlukan pemahaman konteks yang kompleks dan sedang dalam pengembangan.", description: 'Nama geografi yang menyatakan asal daerah/budaya ditulis dengan huruf kapital.', example: 'soto lamongan, batik pekalongan -> Soto Lamongan, Batik Pekalongan', checked: false },
     { id: 'namaLembagaDokumen', label: 'Nama negara, lembaga, dan dokumen', description: 'Huruf pertama setiap kata (kecuali kata tugas) pada nama negara, lembaga, badan, organisasi, atau dokumen dikapitalkan.', example: 'republik indonesia -> Republik Indonesia', checked: true },
-    { id: 'judulKarya', label: 'Judul buku, artikel, dan media massa', description: 'Huruf pertama setiap kata (kecuali kata tugas yang tidak di awal) pada judul karya dikapitalkan.', example: 'dari ave maria ke jalan lain ke roma -> Dari Ave Maria ke Jalan Lain ke Roma', checked: true },
+    { id: 'judulKarya', label: 'Judul buku, artikel, dan media massa', disabled: true, tooltip: "Aturan ini memerlukan pemahaman konteks yang kompleks dan sedang dalam pengembangan.", description: 'Huruf pertama setiap kata (kecuali kata tugas yang tidak di awal) pada judul karya dikapitalkan.', example: 'dari ave maria ke jalan lain ke roma -> Dari Ave Maria ke Jalan Lain ke Roma', checked: false },
     { id: 'singkatanGelar', label: 'Singkatan nama gelar dan pangkat', description: 'Huruf pertama unsur singkatan nama gelar dan pangkat ditulis dengan huruf kapital.', example: 'dr., s.h. -> Dr., S.H.', checked: true },
     { id: 'sapaanKekerabatan', label: 'Sapaan dan hubungan kekerabatan', description: 'Kata penunjuk hubungan kekerabatan yang dipakai sebagai sapaan ditulis dengan huruf kapital.', example: '"Kapan Bapak berangkat?" -> "Kapan Bapak berangkat?"', checked: true }
 ];
+
+if (typeof module === 'object' && module.exports) {
+    module.exports = { wordData, ruleOptions };
+}
