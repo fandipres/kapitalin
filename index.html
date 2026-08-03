@@ -26,111 +26,42 @@
         content="Alat online gratis untuk memeriksa dan memperbaiki penggunaan huruf kapital dalam teks Bahasa Indonesia sesuai dengan aturan EYD. Cepat, mudah, dan akurat.">
     <meta name="twitter:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=Kapitalin">
 
-    <link rel="icon" type="image/png" href="https://placehold.co/32x32/4f46e5/ffffff?text=K">
+    <link rel="icon" type="image/png" href="assets/icons/favicon-32.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/app.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4f46e5">
-    <link rel="apple-touch-icon" href="https://placehold.co/192x192/4f46e5/ffffff?text=K">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <link rel="canonical" href="https://fandipres.github.io/kapitalin/index.html">
 
-        .rule-container::-webkit-scrollbar {
-            width: 6px;
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Kapitalin",
+        "url": "https://fandipres.github.io/kapitalin/",
+        "description": "Alat online gratis untuk memeriksa dan memperbaiki penggunaan huruf kapital dalam teks Bahasa Indonesia sesuai dengan aturan EYD.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "author": {
+            "@type": "Person",
+            "name": "Fandi Presly Simamora"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR"
         }
-
-        .rule-container::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-
-        .rule-container::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        .rule-container::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 220px;
-            background-color: #334155;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 8px;
-            position: absolute;
-            z-index: 10;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -110px;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-            transform: translateY(5px);
-            font-size: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #334155 transparent transparent transparent;
-        }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #modal {
-            display: none;
-        }
-
-        #modal.flex {
-            display: flex;
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        #mobile-menu {
-            transition: transform 0.3s ease-in-out;
-        }
-    </style>
+    }
+    </script>
 </head>
 
-<body class="text-gray-800">
+<body class="text-gray-800 bg-slate-50">
     <div class="min-h-screen flex flex-col">
         <header
             class="bg-white shadow-sm border-b border-gray-200 p-4 flex items-center justify-between sticky top-0 z-20">
@@ -217,6 +148,10 @@
                             </span>
                         </div>
                         <div class="flex items-center space-x-2 w-full sm:w-auto">
+                            <button id="undo-btn" disabled
+                                class="flex-1 sm:flex-none px-4 py-2 text-sm bg-white border border-gray-200 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all shadow-sm flex items-center justify-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white">
+                                <i class="fas fa-rotate-left"></i><span>Urungkan</span>
+                            </button>
                             <button id="clear-btn"
                                 class="flex-1 sm:flex-none px-4 py-2 text-sm bg-white border border-red-200 text-red-600 font-semibold rounded-xl hover:bg-red-50 hover:border-red-300 transition-all shadow-sm flex items-center justify-center space-x-2">
                                 <i class="fas fa-trash-alt"></i><span>Hapus</span>
@@ -374,6 +309,7 @@
     </div>
 
     <script src="assets/js/data.js"></script>
+    <script src="assets/js/capitalize.js"></script>
     <script src="assets/js/index.js"></script>
     <script src="assets/js/pwa.js"></script>
 </body>
