@@ -8,22 +8,53 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+/* Custom scrollbar, styled to match the site's indigo brand */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #a5b4fc #eef2ff;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eef2ff;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a5b4fc;
+    border-radius: 10px;
+    border: 2px solid #eef2ff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #4f46e5;
+}
+
+.rule-container {
+    scrollbar-width: thin;
+    scrollbar-color: #a5b4fc #f8fafc;
+}
+
 .rule-container::-webkit-scrollbar {
     width: 6px;
 }
 
 .rule-container::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #f8fafc;
     border-radius: 10px;
 }
 
 .rule-container::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background-color: #a5b4fc;
     border-radius: 10px;
+    border: none;
 }
 
 .rule-container::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background-color: #4f46e5;
 }
 
 .tooltip {
