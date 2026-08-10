@@ -1,6 +1,6 @@
 # 🚀 Kapitalin: Automatic Capitalization
 
-A simple and free web-based tool designed to automatically check and correct capitalization in Indonesian text according to the official grammar rules (EYD V).
+Kapitalin is a web-based tool that automatically checks and corrects capitalization in Indonesian text, based on the rules of the Indonesian Spelling System (EYD), 5th Edition. It's built to help writers, students, and anyone who wants to make sure their writing follows proper capitalization rules without manually checking every line. Simply paste your text, and Kapitalin will highlight and fix capitalization errors automatically.
 
 ## ✨ Key Features
 
