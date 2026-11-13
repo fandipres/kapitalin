@@ -1,1 +1,4 @@
 node_modules/
+
+# Konteks proyek untuk Claude Code (jangan dipublikasikan)
+CLAUDE.md
